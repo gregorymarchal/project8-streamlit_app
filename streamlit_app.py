@@ -33,7 +33,7 @@ def get_segmentation_mask(image_path):
 
 # Streamlit app
 def main():
-    st.title("Image Selector and Segmentation Mask Viewer")
+    st.title("Project 8: Image Selector and Segmentation Mask Viewer")
 
     # Crawl the directory to get a list of all images
     image_files = crawl_image_files(root_directory)
@@ -53,7 +53,21 @@ def main():
                 segmentation_mask = get_segmentation_mask(selected_image)
 
                 if segmentation_mask:
-                    st.image(segmentation_mask, caption="Segmentation Mask", use_column_width=True)
+                    # Determine the corresponding ground truth mask path
+                    relative_path = os.path.relpath(selected_image, root_directory)
+                    ground_truth_mask_path = os.path.join(
+                        root_dir_masks,
+                        relative_path.replace("leftImg8bit.png", "gtFine_color.png")
+                    )
+
+                    # Load the ground truth mask
+                    if os.path.exists(ground_truth_mask_path):
+                        ground_truth_mask = Image.open(ground_truth_mask_path)
+                        # Display the computed mask and the ground truth mask side by side
+                        st.image([segmentation_mask, ground_truth_mask], caption=["Computed Mask", "Ground Truth Mask"], use_column_width=True)
+                    else:
+                        st.error("Ground truth mask not found.")
+
     else:
         st.write("No images found in the directory.")
 
