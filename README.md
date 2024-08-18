@@ -19,21 +19,21 @@ This Streamlit app allows users to select images from a specified directory, sen
 To run this app locally, follow these steps:
 
 1. **Clone the repository**:
-   \`\`\`bash
+   ```bash
    git clone <repository-url>
-   \`\`\`
+   ```
 2. **Navigate to the project directory**:
-   \`\`\`bash
+   ```bash
    cd <project-directory>
-   \`\`\`
+   ```
 3. **Install the required dependencies**:
-   \`\`\`bash
+   ```bash
    pip install -r requirements.txt
-   \`\`\`
+   ```
 4. **Run the Streamlit app**:
-   \`\`\`bash
-   streamlit run app.py
-   \`\`\`
+   ```bash
+   streamlit run streamlit_app.py
+   ```
 
 ## Configuration
 
@@ -49,7 +49,7 @@ The app assumes that the directory structure is consistent and that the naming c
 
 ## Usage
 
-1. **Start the app** using the command `streamlit run app.py`.
+1. **Start the app** using the command `streamlit run streamlit_app.py`.
 2. **Select an image** from the dropdown menu.
 3. **View the selected image** displayed in the app.
 4. **Click "Get Segmentation Mask"** to send the image to the API.
